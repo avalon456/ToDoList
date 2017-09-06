@@ -59,7 +59,7 @@ namespace ToDoListApp.Controllers
             SelectedNote.Done = note.Done;
             db.Entry(SelectedNote).State = EntityState.Modified;
             db.SaveChanges();
-            return new HttpStatusCodeResult(400);
+            return new HttpStatusCodeResult(200);
         }
         [HttpGet]
         public ActionResult RemoveNote(string id)
