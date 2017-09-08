@@ -10,26 +10,28 @@
     <title>ToDoList</title>
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/ToDoController.js"></script>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
    
 </head>
-<body ng-controller="todoController">
-    <div ng-show="!editmode">
+<body ng-controller="todoController" style="margin-left: 10px">
+    <div ng-show="!editmode" style="height: 140px">
         <h3>Добавление новой записи</h3>
-        Описание: <input type="text" ng-model="descToAdd" placeholder="Введите описание" /> <input type="button" value="Add"  ng-click="addOne();" />
+        Описание: <input type="text" ng-model="descToAdd" placeholder="Введите описание" size="{{textboxSize}}"ng-change="textboxSizing();" maxlength="119"/> <input type="button" value="Add"  ng-click="addOne();" />
 
     </div>
-    <div ng-show="editmode">
+    <div ng-show="editmode"style="height: 140px">
         <h3>Редактирование записи</h3>
         <input type="hidden" ng-model="idToUpdate" />
-        Описание: <input type="text" ng-model="descToUpdate" placeholder="Введите описание" />
+        Описание: <input type="text" ng-model="descToUpdate" placeholder="Введите описание" size="{{textboxSize}}" ng-change="textboxSizing();" maxlength="119"/>
         <br />
         Дата создания: {{dateToUpdate}}
         <br />
         Выполнено: <input type="checkbox" ng-model="doneToUpdate" />
         <br />
-        <input type="button" value="Update" ng-click="putOne();" /><input type="button" value="Cancel" ng-click="putCancel();" />
+        <input type="button" value="Принять изменения" ng-click="putOne();" style="margin-right: 10px" /><input type="button" value="Отменить редактирование" ng-click="putCancel();" />
      </div>
     <div>
+        <hr />
        <!-- <input type="button" value="show" ng-click="getAll();" />-->
         <h3>Записи</h3>
         <table ng-init="getAll();">

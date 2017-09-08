@@ -14,7 +14,7 @@ namespace ToDoListApp
     {
         protected void Application_Start()
         {
-           // Database.SetInitializer(new NoteDbInitializer());
+           //Database.SetInitializer(new NoteDbInitializer());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -1,7 +1,7 @@
 ﻿var app = angular.module("todoApp", []),
     uri = 'Home';
 
-app.controller("todoController", function ($scope, $http, $filter) {
+app.controller("todoController", function ($scope, $http, $filter, $timeout) {
     $scope.notes = [];
     $scope.editmode = false;
     $scope.deleteOne = function (id) {
@@ -29,7 +29,7 @@ app.controller("todoController", function ($scope, $http, $filter) {
             })
         }).then(function (success) {
             $scope.editmode = false;
-            alert("success");
+            alert("Действие завершено");
             $scope.getAll();
         }, function (error) {
             alert("Что-то пошло не так 	ಠ_ಠ");
@@ -41,6 +41,14 @@ app.controller("todoController", function ($scope, $http, $filter) {
         $scope.dateToUpdate = note.CreationTime;
         $scope.doneToUpdate = note.Done;
         $scope.idToUpdate = note.Id;
+        $scope.descToAdd = null;
+    };
+    $scope.putCancel = function () {
+        $scope.editmode = false;
+        $scope.descToUpdate = null;
+        $scope.dateToUpdate = null;
+        $scope.idToUpdate = null;
+        $scope.doneToUpdate = false;
     };
     $scope.putOne = function () {
         $http({//Редактирование(запрос)
@@ -89,6 +97,18 @@ app.controller("todoController", function ($scope, $http, $filter) {
             
         })
     };
+    $scope.textboxSize = 30;
+    $scope.textboxSizing = function ()
+        {
+        if ($scope.editmode && $scope.descToUpdate.length > 20) {
+            $scope.textboxSize = $scope.descToUpdate.length + 10;
+        }
+        else
+            if (!$scope.editmode && $scope.descToAdd.length > 20) {
+                $scope.textboxSize = $scope.descToAdd.length + 10;
+            }
+            else $scope.textboxSize = 30;
+    }
     
     
 })
