@@ -8,23 +8,28 @@ using ToDoListApp.Models;
 
 namespace ToDoListApp.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         NoteContext db = new NoteContext();
+        //[Authorize]
         [HttpGet]
         public JsonResult AllNotes()
         {
             return Json(db.Notes, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public string Note()
+        public ActionResult GetNote(int id)
         {
-            return db.Notes.FirstOrDefault(x => x.Description == "Запись 1").Description;
+            return View("~/Views/Home/Index.cshtml");
+            //return Json(db.Notes.FirstOrDefault(), JsonRequestBehavior.AllowGet);//(x => x.Description == "Запись 1");
         }
+        //[Authorize]
         public ActionResult Index()
         {
             return View();
         }
+
         public IQueryable<Note> GetNotes()
         {
             return db.Notes;
@@ -61,11 +66,11 @@ namespace ToDoListApp.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(200);
         }
-        [HttpGet]
-        public ActionResult RemoveNote(string id)
+        [HttpPost]
+        public ActionResult RemoveNote(int id)
         {
             
-            Note note = db.Notes.Find(Int32.Parse(id));
+            Note note = db.Notes.Find(id);
             if(note != null)
             {
                 db.Entry(note).State = EntityState.Deleted;

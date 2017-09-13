@@ -49,10 +49,13 @@ namespace ToDoListApp.Models
     public class LoginViewModel
     {
         [Required]
+        [Display(Name ="Логин")]
+        public string Name { get; set; }
+        /*[Required]
         [Display(Name = "Адрес электронной почты")]
         [EmailAddress]
         public string Email { get; set; }
-
+        */
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
@@ -64,6 +67,9 @@ namespace ToDoListApp.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name ="Логин")]
+        public string Name { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Адрес электронной почты")]

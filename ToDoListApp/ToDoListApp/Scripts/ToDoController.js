@@ -7,7 +7,7 @@ app.controller("todoController", function ($scope, $http, $filter, $timeout) {
     $scope.deleteOne = function (id) {
         
         $http({//Удаление записи(запрос)
-            method: 'GET',
+            method: 'POST',
             url: uri + '/RemoveNote/' + id
         }).then(function (success) {
             $scope.getAll();
@@ -97,18 +97,7 @@ app.controller("todoController", function ($scope, $http, $filter, $timeout) {
             
         })
     };
-    $scope.textboxSize = 30;
-    $scope.textboxSizing = function ()
-        {
-        if ($scope.editmode && $scope.descToUpdate.length > 20) {
-            $scope.textboxSize = $scope.descToUpdate.length + 10;
-        }
-        else
-            if (!$scope.editmode && $scope.descToAdd.length > 20) {
-                $scope.textboxSize = $scope.descToAdd.length + 10;
-            }
-            else $scope.textboxSize = 30;
-    }
+    
     
     
 })

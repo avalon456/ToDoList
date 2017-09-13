@@ -1,5 +1,7 @@
 ﻿@{
-    Layout = null;
+    //Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ToDo List";
 }
 
 <!DOCTYPE html>
@@ -16,13 +18,12 @@
 <body ng-controller="todoController" style="margin-left: 10px">
     <div ng-show="!editmode" style="height: 140px">
         <h3>Добавление новой записи</h3>
-        Описание: <input type="text" ng-model="descToAdd" placeholder="Введите описание" size="{{textboxSize}}"ng-change="textboxSizing();" maxlength="119"/> <input type="button" value="Add"  ng-click="addOne();" />
-
+        Описание: <input type="text" ng-model="descToAdd" placeholder="Введите описание" style="width: 900px;" maxlength="119"/> <input type="button" value="Добавить"  ng-click="addOne();" />
     </div>
     <div ng-show="editmode"style="height: 140px">
         <h3>Редактирование записи</h3>
         <input type="hidden" ng-model="idToUpdate" />
-        Описание: <input type="text" ng-model="descToUpdate" placeholder="Введите описание" size="{{textboxSize}}" ng-change="textboxSizing();" maxlength="119"/>
+        Описание: <input type="text" ng-model="descToUpdate" placeholder="Введите описание" style="width: 900px;" maxlength="119"/>
         <br />
         Дата создания: {{dateToUpdate}}
         <br />
@@ -34,28 +35,30 @@
         <hr />
        <!-- <input type="button" value="show" ng-click="getAll();" />-->
         <h3>Записи</h3>
-        <table ng-init="getAll();">
+        <table class="table table-striped" ng-init="getAll();">
+            <thead>
             <tr>
-                <td><p>Описание</p></td>
-                <td><p>Дата создания</p></td>
-                <td><p>Состояние</p></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <th>Описание</th>
+                <th>Дата создания</th>
+                <th>Состояние</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
-          
+            </thead>
+            <tbody>
                 <tr ng-repeat="note in notes">
                     <td><p>{{note.Description}}</p></td>
                     <td><p>{{note.CreationTime}}</p></td>
-                    <td><p ng-if="note.Done">Выполнено</p>
-                    <p ng-if="!note.Done">Не завершено</p>
+                    <td><p><div ng-if="note.Done" class="label label-success">Выполнено</div></p>
+                    <p><div ng-if="!note.Done" class=" label label-danger">Не завершено</div></p>
                     </td>
                     <td><input type="button" value="Редактировать" ng-click="editOne(note);"/></td>
                     <td><input type="button" value="Удалить" ng-click="deleteOne(note.Id);"></td>
                     <td><input ng-if="!note.Done" type="button" value="Пометить как завершенное" ng-click="endNote(note);" /></td>
                    
                 </tr>
-
+            </tbody>
         </table>
         
         

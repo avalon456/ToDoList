@@ -58,11 +58,11 @@ namespace ToDoListApp
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "273270499762-rqa69d1f59iidhtb8470t4lki7j01q1o.apps.googleusercontent.com",
+                ClientSecret = "mcMrWEjDgkzbaxqHTguQDUyT"
+            });
         }
     }
 }

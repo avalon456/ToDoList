@@ -8,7 +8,7 @@ namespace ToDoListApp.Models
 {
     public class NoteContext: DbContext
     {
-        public NoteContext(): base("DBConnection"){}
+        public NoteContext(): base("DefaultConnection"){}
         public DbSet<Note> Notes { get; set; }
     }
 }
