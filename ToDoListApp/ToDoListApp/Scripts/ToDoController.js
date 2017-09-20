@@ -11,9 +11,9 @@ app.controller("todoController", function ($scope, $http, $filter, $timeout) {
             url: uri + '/RemoveNote/' + id
         }).then(function (success) {
             $scope.getAll();
-            alert('Запись удалена');
-        }, function (error) {
-            alert("Что-то пошло не так 	ಠ_ಠ");
+            Throw_Message('Запись удалена', 'success');
+            }, function (error) {
+                Throw_Message("Что-то пошло не так 	ಠ_ಠ", 'error');
         })
     };
     $scope.endNote = function (note) {
@@ -29,10 +29,10 @@ app.controller("todoController", function ($scope, $http, $filter, $timeout) {
             })
         }).then(function (success) {
             $scope.editmode = false;
-            alert("Действие завершено");
+            Throw_Message('Действие завершено', 'success');
             $scope.getAll();
         }, function (error) {
-            alert("Что-то пошло не так 	ಠ_ಠ");
+            Throw_Message("Что-то пошло не так 	ಠ_ಠ", 'error');
         })
     };
     $scope.editOne = function (note) {
@@ -64,9 +64,9 @@ app.controller("todoController", function ($scope, $http, $filter, $timeout) {
         }).then(function (success) {
             $scope.editmode = false;
             $scope.getAll();
-            alert("Запись изменена");
+            Throw_Message('Запись отредактирована', 'success');
         }, function (error) {
-            alert("Что-то пошло не так 	ಠ_ಠ");
+            Throw_Message("Что-то пошло не так 	ಠ_ಠ", 'error');
         })
     };
     $scope.getAll = function () {
@@ -91,9 +91,9 @@ app.controller("todoController", function ($scope, $http, $filter, $timeout) {
             })
         }).then(function (success) {
             $scope.getAll();
-            alert('Запись добавлена');
+            Throw_Message('Запись добавлена', 'success');
             }, function (error) {
-                alert("Что-то пошло не так 	ಠ_ಠ");
+                Throw_Message("Что-то пошло не так 	ಠ_ಠ", 'error');
             
         })
     };

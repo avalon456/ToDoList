@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using ToDoListApp.Models;
+using Microsoft.AspNet.Identity;
+
 
 namespace ToDoListApp.Controllers
 {
@@ -12,11 +14,12 @@ namespace ToDoListApp.Controllers
     public class HomeController : Controller
     {
         NoteContext db = new NoteContext();
-        //[Authorize]
+        [Authorize]
         [HttpGet]
-        public JsonResult AllNotes()
+        public ActionResult AllNotes()
         {
-            return Json(db.Notes, JsonRequestBehavior.AllowGet);
+           string usId = User.Identity.GetUserId();
+           return Json(db.Notes.Where(n => n.UserId == usId) , JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult GetNote(int id)
@@ -24,7 +27,7 @@ namespace ToDoListApp.Controllers
             return View("~/Views/Home/Index.cshtml");
             //return Json(db.Notes.FirstOrDefault(), JsonRequestBehavior.AllowGet);//(x => x.Description == "Запись 1");
         }
-        //[Authorize]
+        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -34,11 +37,13 @@ namespace ToDoListApp.Controllers
         {
             return db.Notes;
         }
+        [Authorize]
         [HttpPost]
         public ActionResult AddNote(Note note)
         {
             if (note != null)
             {
+                note.UserId = User.Identity.GetUserId();
                 db.Notes.Add(note);
                 db.SaveChanges();
                 return new HttpStatusCodeResult(200);
@@ -54,6 +59,7 @@ namespace ToDoListApp.Controllers
             }
             return HttpNotFound();*/
         }
+        [Authorize]
         [HttpPost]
         public ActionResult EditNote(Note note)
         {
@@ -66,6 +72,7 @@ namespace ToDoListApp.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(200);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult RemoveNote(int id)
         {

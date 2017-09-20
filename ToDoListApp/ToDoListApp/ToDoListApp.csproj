@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201708280745236_MigrateDB.Designer.cs">
       <DependentUpon>201708280745236_MigrateDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709141122300_LastMigration.cs" />
+    <Compile Include="Migrations\201709141122300_LastMigration.Designer.cs">
+      <DependentUpon>201709141122300_LastMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -192,8 +196,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\noty.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -205,6 +211,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Interface.js" />
+    <Content Include="Scripts\noteList.js" />
+    <Content Include="Scripts\noty.min.js" />
     <Content Include="Scripts\ToDoController.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -251,6 +260,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -269,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708280745236_MigrateDB.resx">
       <DependentUpon>201708280745236_MigrateDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709141122300_LastMigration.resx">
+      <DependentUpon>201709141122300_LastMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

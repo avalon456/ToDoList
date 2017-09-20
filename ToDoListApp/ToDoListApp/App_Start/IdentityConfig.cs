@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using ToDoListApp.Models;
+using System.Net.Mail;
 
 namespace ToDoListApp
 {
@@ -18,8 +19,25 @@ namespace ToDoListApp
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Подключите здесь службу электронной почты для отправки сообщения электронной почты.
-            return Task.FromResult(0);
+            //Логин и пароль почты отправителя
+            var from = "abaddonjap456852@gmail.com";
+            var pass = "xflupiwkvehjylbw";//Пароль приложения OAuth2 google
+
+            //адрес и порт smpt-сервера, с которого отправляется письмо
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential(from, pass);
+            client.EnableSsl = true;
+
+            //Создание письма
+            var mail = new MailMessage(from, message.Destination);
+            mail.Subject = message.Subject;
+            mail.Body = message.Body;
+            mail.IsBodyHtml = true;
+
+            return client.SendMailAsync(mail);
         }
     }
 
