@@ -13,18 +13,32 @@
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/ToDoController.js"></script>
     <script src="~/Scripts/Interface.js"></script>
+    <script src="~/Scripts/my-angular.filters.js"></script>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
    
 </head>
 <body ng-controller="todoController" style="margin-left: 10px">
+    <h1 ng-bind="myuri"></h1>
     <div ng-show="!editmode" style="height: 140px">
         <h3>Добавление новой записи</h3>
-        Описание: <input type="text" ng-model="descToAdd" placeholder="Введите описание" style="width: 900px;" maxlength="119"/> <input type="button" value="Добавить"  ng-click="addOne();" />
+        Описание: <input type="text" ng-model="descToAdd" placeholder="Введите описание" style="width: 900px;" maxlength="119"/> <br />
+        <select ng-model="priorToAdd">
+            <option value="Low" ng-selected>Низкий</option>
+            <option value="Medium">Средний</option>
+            <option value="High">Высокий</option>
+        </select>
+        <input type="button" value="Добавить"  ng-click="addOne();" />
     </div>
     <div ng-show="editmode"style="height: 140px">
         <h3>Редактирование записи</h3>
         <input type="hidden" ng-model="idToUpdate" />
         Описание: <input type="text" ng-model="descToUpdate" placeholder="Введите описание" style="width: 900px;" maxlength="119"/>
+        <br />
+        <select ng-model="priorToUpdate">
+            <option value="Low" ng-selected>Низкий</option>
+            <option value="Medium">Средний</option>
+            <option value="High">Высокий</option>
+        </select>
         <br />
         Дата создания: {{dateToUpdate}}
         <br />
@@ -48,9 +62,9 @@
             </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="note in notes">
-                    <td><p>{{note.Description}}</p></td>
-                    <td><p>{{note.CreationTime}}</p></td>
+                <tr ng-repeat="note in notes | orderBy: 'CreationTime'">
+                    <td><p ng-bind="note.Description"></p></td>
+                    <td><p ng-bind="note.CreationTime | mydate | date: 'dd/MM/yyyy'"></p></td>
                     <td><p><div ng-if="note.Done" class="label label-success">Выполнено</div></p>
                     <p><div ng-if="!note.Done" class=" label label-danger">Не завершено</div></p>
                     </td>

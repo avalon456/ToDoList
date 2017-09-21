@@ -7,13 +7,13 @@ namespace ToDoListApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class MigrationDB : IMigrationMetadata
+    public sealed partial class MigrateDB21 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MigrationDB));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MigrateDB21));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709080857167_MigrationDB"; }
+            get { return "201709210949142_MigrateDB21"; }
         }
         
         string IMigrationMetadata.Source

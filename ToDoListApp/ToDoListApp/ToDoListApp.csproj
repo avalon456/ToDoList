@@ -173,17 +173,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708271523085_InitialCreate.cs" />
-    <Compile Include="Migrations\201708271523085_InitialCreate.Designer.cs">
-      <DependentUpon>201708271523085_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708280745236_MigrateDB.cs" />
-    <Compile Include="Migrations\201708280745236_MigrateDB.Designer.cs">
-      <DependentUpon>201708280745236_MigrateDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709141122300_LastMigration.cs" />
-    <Compile Include="Migrations\201709141122300_LastMigration.Designer.cs">
-      <DependentUpon>201709141122300_LastMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201709210949142_MigrateDB21.cs" />
+    <Compile Include="Migrations\201709210949142_MigrateDB21.Designer.cs">
+      <DependentUpon>201709210949142_MigrateDB21.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -212,6 +204,7 @@
     <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Interface.js" />
+    <Content Include="Scripts\my-angular.filters.js" />
     <Content Include="Scripts\noteList.js" />
     <Content Include="Scripts\noty.min.js" />
     <Content Include="Scripts\ToDoController.js" />
@@ -274,14 +267,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708271523085_InitialCreate.resx">
-      <DependentUpon>201708271523085_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708280745236_MigrateDB.resx">
-      <DependentUpon>201708280745236_MigrateDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709141122300_LastMigration.resx">
-      <DependentUpon>201709141122300_LastMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709210949142_MigrateDB21.resx">
+      <DependentUpon>201709210949142_MigrateDB21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

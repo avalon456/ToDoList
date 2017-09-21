@@ -44,6 +44,7 @@ namespace ToDoListApp.Controllers
             if (note != null)
             {
                 note.UserId = User.Identity.GetUserId();
+                note.CreationTime = DateTime.Now;
                 db.Notes.Add(note);
                 db.SaveChanges();
                 return new HttpStatusCodeResult(200);

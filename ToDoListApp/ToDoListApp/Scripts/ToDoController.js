@@ -1,8 +1,9 @@
 ﻿var app = angular.module("todoApp", []),
     uri = 'Home';
-
+if (window.location.pathname == '/') uri = "Home";
 app.controller("todoController", function ($scope, $http, $filter, $timeout) {
     $scope.notes = [];
+    $scope.myuri = window.location.pathname;
     $scope.editmode = false;
     $scope.deleteOne = function (id) {
         
@@ -85,7 +86,7 @@ app.controller("todoController", function ($scope, $http, $filter, $timeout) {
             url: uri + '/AddNote',
             data: JSON.stringify({
                 Description: $scope.descToAdd,
-                CreationTime: $filter('date')(new Date(), 'HH:mm d/MM/yyyy'),
+                //CreationTime: $filter('date')(new Date(), 'HH:mm d/MM/yyyy'),
                 Done: false
 
             })

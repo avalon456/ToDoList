@@ -3,16 +3,16 @@ namespace ToDoListApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class MigrateDB : DbMigration
+    public partial class MigrateDB21 : DbMigration
     {
         public override void Up()
         {
-            AlterColumn("dbo.Notes", "CreationTime", c => c.String());
+            AddColumn("dbo.Notes", "Priority", c => c.String());
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.Notes", "CreationTime", c => c.DateTime(nullable: false));
+            DropColumn("dbo.Notes", "Priority");
         }
     }
 }
