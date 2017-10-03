@@ -69,6 +69,8 @@ namespace ToDoListApp.Controllers
                 return HttpNotFound();
             SelectedNote.Description = note.Description;
             SelectedNote.Done = note.Done;
+            SelectedNote.Priority = note.Priority;
+            SelectedNote.CreationTime = note.CreationTime;
             db.Entry(SelectedNote).State = EntityState.Modified;
             db.SaveChanges();
             return new HttpStatusCodeResult(200);
@@ -77,7 +79,6 @@ namespace ToDoListApp.Controllers
         [HttpPost]
         public ActionResult RemoveNote(int id)
         {
-            
             Note note = db.Notes.Find(id);
             if(note != null)
             {

@@ -73,15 +73,15 @@ namespace ToDoListApp.Controllers
                 var user = await UserManager.FindAsync(model.Name, model.Password);
                 if(user != null)
                 {
-                    if(user.EmailConfirmed == true)
+                  //  if(user.EmailConfirmed == true)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }
-                    else
-                    {
-                        ModelState.AddModelError("", "Не подтвержден Email.");
-                    }
+                    //else
+                    //{
+                    //    ModelState.AddModelError("", "Не подтвержден Email.");
+                    //}
                 }
                 else
                 {
@@ -157,15 +157,15 @@ namespace ToDoListApp.Controllers
                 if (result.Succeeded)
                 {
                     // генерируем токен для подтверждения регистрации
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // создаем ссылку для подтверждения
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
                                protocol: Request.Url.Scheme);
                     // отправка письма
                     await UserManager.SendEmailAsync(user.Id, "Подтверждение электронной почты",
-                               "Для завершения регистрации перейдите по ссылке:: <a href=\""
-                                                               + callbackUrl + "\">завершить регистрацию</a>");
-                    return View("DisplayEmail");
+                             "Для завершения регистрации перейдите по ссылке:: <a href=\""
+                                                             + callbackUrl + "\">завершить регистрацию</a>");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }

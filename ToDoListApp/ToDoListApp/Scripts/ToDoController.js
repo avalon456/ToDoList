@@ -1,10 +1,26 @@
 ﻿var app = angular.module("todoApp", []),
     uri = 'Home';
-if (window.location.pathname == '/') uri = "Home";
+
 app.controller("todoController", function ($scope, $http, $filter, $timeout) {
     $scope.notes = [];
-    $scope.myuri = window.location.pathname;
+    $scope.dateToUpdate = '/Date(1000)/';
+    $scope.sortparam = 'Id';
     $scope.editmode = false;
+    $scope.params = {};
+    $scope.params.sortType = 'Id';
+    $scope.params.sortReverse = false;
+    $scope.params.searchText = {};
+    $scope.params.searchText.Description = '';
+    $scope.params.myparam = 'Текст';
+
+
+
+    $scope.SortList = function (param) {
+        if (param == $scope.sortparam)
+            $scope.sortparam = '-' + param;
+        else
+            $scope.sortparam = param;
+    };
     $scope.deleteOne = function (id) {
         
         $http({//Удаление записи(запрос)
@@ -24,8 +40,9 @@ app.controller("todoController", function ($scope, $http, $filter, $timeout) {
             data: JSON.stringify({
                 Id: note.Id,
                 Description: note.Description,
-                CreationTime: note.CreationTime,
-                Done: true
+                CreationTime: $filter('mydate')(note.CreationTime),
+                Done: true,
+                Priority: note.Priority
 
             })
         }).then(function (success) {
@@ -39,16 +56,19 @@ app.controller("todoController", function ($scope, $http, $filter, $timeout) {
     $scope.editOne = function (note) {
         $scope.editmode = true;
         $scope.descToUpdate = note.Description;
-        $scope.dateToUpdate = note.CreationTime;
+        $scope.dateToUpdate = note.CreationTime;//$filter('mydate')(note.CreationTime);
         $scope.doneToUpdate = note.Done;
+        $scope.priorToUpdate = note.Priority
         $scope.idToUpdate = note.Id;
         $scope.descToAdd = null;
+        $scope.priorToAdd = "3";
     };
     $scope.putCancel = function () {
         $scope.editmode = false;
         $scope.descToUpdate = null;
-        $scope.dateToUpdate = null;
+        $scope.dateToUpdate = '/Date(1000)/';
         $scope.idToUpdate = null;
+        $scope.priorToUpdate = "3";
         $scope.doneToUpdate = false;
     };
     $scope.putOne = function () {
@@ -58,8 +78,9 @@ app.controller("todoController", function ($scope, $http, $filter, $timeout) {
             data: JSON.stringify({
                 Id: $scope.idToUpdate,
                 Description: $scope.descToUpdate,
-                CreationTime: $scope.dateToUpdate,
-                Done: $scope.doneToUpdate
+                CreationTime: $filter('mydate')($scope.dateToUpdate),
+                Done: $scope.doneToUpdate,
+                Priority: $scope.priorToUpdate
 
             })
         }).then(function (success) {
@@ -87,7 +108,8 @@ app.controller("todoController", function ($scope, $http, $filter, $timeout) {
             data: JSON.stringify({
                 Description: $scope.descToAdd,
                 //CreationTime: $filter('date')(new Date(), 'HH:mm d/MM/yyyy'),
-                Done: false
+                Done: false,
+                Priority: $scope.priorToAdd
 
             })
         }).then(function (success) {

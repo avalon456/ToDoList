@@ -29,6 +29,12 @@ namespace ToDoListApp
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/animate.min.css",
+                      "~/Content/noty.css",
+                      "~/Content/font-awesome.min.css"));
+            bundles.Add(new StyleBundle("~/Content/layoutcss").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/LayoutStyle.css",
+                      "~/Content/animate.min.css",
                       "~/Content/noty.css"));
         }
     }
